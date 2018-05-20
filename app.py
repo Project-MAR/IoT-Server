@@ -62,5 +62,8 @@ def push_to_line():
 
     line_bot_api.push_message(USER_TOP_TOKEN, TextSendMessage(text=user_message))
 
+    result = {'status':'success'}
+    return json.dumps(result)
+
 if __name__ == "__main__":
 	app.run()

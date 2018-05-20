@@ -24,7 +24,7 @@ def callback():
     user_id   = data_dict['id']
     user_message = data_dict['message']
 
-    result = 'JSON String: 'json_string + '\n'
+    result = 'json string: ' + json_string + '\n'
     result = result + 'user id: ' + user_id + '\n'
     result = result + 'user name: ' + user_name + '\n'
     result = result + 'user message: ' + user_message 

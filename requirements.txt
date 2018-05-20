@@ -2,3 +2,4 @@ Flask
 flask_httpauth
 gunicorn
 requests
+line-bot-sdk

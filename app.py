@@ -1,15 +1,16 @@
 from flask import Flask, request, abort, make_response
 from flask_httpauth import HTTPBasicAuth
-from secret.py import *
+import os
 
 import requests, json
 
 app = Flask(__name__)
 
+CHANNEL_SECRET = os.environ.get('provider_channel_secret')
+
 @app.route('/')
 def index():
-	token = secret()
-	return token.user_ram_id
+	return CHANNEL_SECRET
 
 @app.route('/hello', methods=['GET'])
 def hello():

@@ -24,6 +24,8 @@ USER_RAM_TOKEN = os.environ.get('user_ram_id')
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
 
+db = ''
+
 @app.route('/line_callback', methods=['POST'])
 def line_callback():
 
@@ -37,6 +39,13 @@ def line_callback():
         abort(400)
 
     return request.data
+
+@handler.add(MessageEvent, message=TextMessage)
+def handle_message(event):
+	global db
+	text = event.message.text #message from user
+	db = text
+
 
 @app.route('/')
 def index():
@@ -78,6 +87,16 @@ def push_to_line():
 
     result = {'status':'success'}
     return json.dumps(result)
+
+@app.route('/message_checker', methods=['POST'])
+def message_checker():
+	global db
+	if db != '':
+		temp = db
+		db = ''
+		return temp
+	else:
+		return 'NONE'
 
 if __name__ == "__main__":
 	app.run()

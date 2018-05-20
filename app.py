@@ -74,7 +74,7 @@ def push_to_line():
     user_id   = data_dict['id']
     user_message = data_dict['message']
 
-    line_bot_api.push_message(USER_TOP_TOKEN, TextSendMessage(text=user_message))
+    line_bot_api.push_message(USER_RAM_TOKEN, TextSendMessage(text=user_message))
 
     result = {'status':'success'}
     return json.dumps(result)

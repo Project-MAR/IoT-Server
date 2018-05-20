@@ -15,7 +15,7 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-CHANNEL_SECRET = os.environ.get('provider_channel_secret')
+CHANNEL_SECRET = os.environ.get('provider_test_channel_secret')
 CHANNEL_ACCESS_TOKEN = os.environ.get('provider_test_channel_access_token')
 
 USER_TOP_TOKEN = os.environ.get('user_top_id')

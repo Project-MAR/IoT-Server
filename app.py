@@ -18,7 +18,7 @@ def hello():
 def callback():
     payload     = request.get_json()
     json_string = json.dumps(payload)
-    data_dict   = json.load(json_string)
+    data_dict   = json.loads(json_string)
 
     user_name = data_dict['name']
     user_id   = data_dict['id']

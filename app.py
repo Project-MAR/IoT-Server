@@ -15,7 +15,7 @@ from linebot.models import (
 
 app = Flask(__name__)
 
-CHANNEL_SECRET = os.environ.get('provider_channel_secret')
+CHANNEL_SECRET = os.environ.get('provider_test_channel_secret')
 #CHANNEL_ACCESS_TOKEN = os.environ.get('provider_channel_access_token')
 CHANNEL_ACCESS_TOKEN = os.environ.get('provider_test_channel_access_token')
 
@@ -24,6 +24,20 @@ USER_RAM_TOKEN = os.environ.get('user_ram_id')
 
 line_bot_api = LineBotApi(CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(CHANNEL_SECRET)
+
+@app.route('/line_callback', methods=['POST'])
+def line_callback():
+
+    signature = request.headers['X-Line-Signature']
+    body = request.get_data(as_text=True)
+    app.logger.info("Request body: " + body)
+    
+    try:
+        handler.handle(body, signature)
+    except InvalidSignatureError:
+        abort(400)
+
+    return request.data
 
 @app.route('/')
 def index():

@@ -9,6 +9,10 @@ app = Flask(__name__)
 def index():
 	return 'OK'
 
+@app.route('/hello', methods=['GET'])
+def hello():
+	username = request.args.get('name')
+	return 'hello ' + username
+
 if __name__ == "__main__":
 	app.run()
-	

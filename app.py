@@ -1,5 +1,6 @@
 from flask import Flask, request, abort, make_response
 from flask_httpauth import HTTPBasicAuth
+from secret.py import *
 
 import requests, json
 
@@ -7,7 +8,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return 'OK'
+	token = secret()
+	return token.user_ram_id
 
 @app.route('/hello', methods=['GET'])
 def hello():

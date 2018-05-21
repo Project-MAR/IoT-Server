@@ -16,7 +16,7 @@ from linebot.models import (
 app = Flask(__name__)
 
 CHANNEL_SECRET = os.environ.get('provider_channel_secret')
-CHANNEL_ACCESS_TOKEN = os.environ.get('provider_channel_access_token')
+CHANNEL_ACCESS_TOKEN = os.environ.get('provider_top_channel_access_token')
 
 USER_TOP_TOKEN = os.environ.get('user_top_id')
 USER_RAM_TOKEN = os.environ.get('user_ram_id')
@@ -86,6 +86,7 @@ def push_to_line():
     line_bot_api.push_message(USER_RAM_TOKEN, TextSendMessage(text=user_message))
 
     result = {'status':'success'}
+    print(CHANNEL_ACCESS_TOKEN)
     return json.dumps(result)
 
 @app.route('/message_checker', methods=['POST'])
